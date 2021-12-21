@@ -3,14 +3,14 @@ pool:
 
 jobs:
   - job: Testing1
-    displayName: 'Test the Component'
+    displayName: 'Test component'
     steps:
       - checkout: self
       - script: |
           cat pipelines/chat-notify.yml
         workingDirectory: alert-test
   - job: SendingAlert
-    displayName: File Share Backup Failed Alert
+    displayName: Sending alert
     dependsOn:
       - Testing1
     condition: eq(dependencies.Testing1.result, 'Failed')
@@ -20,6 +20,6 @@ jobs:
           PIPELINE_NAME: 'alert-test'
           ENVIRONMENT: "prod"
           PIPELINE_STATUS: "Failed"
-          GOOGLE_CHAT_SPACE: $(SRE_GOOGLE_CHAT_SPACE)
-          GOOGLE_CHAT_KEY: $(SRE_GOOGLE_CHAT_KEY)
-          GOOGLE_CHAT_TOKEN: $(SRE_GOOGLE_CHAT_TOKEN)
+          GOOGLE_CHAT_SPACE: "AAAA-y5RxXY"
+          GOOGLE_CHAT_KEY: "AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI"
+          GOOGLE_CHAT_TOKEN: "n678xyeVxt1ZXmw052hT_4pgJIm1BNSNE-iYDf0AgZY%3D"
