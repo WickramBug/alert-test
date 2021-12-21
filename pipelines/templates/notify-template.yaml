@@ -6,6 +6,6 @@ steps:
   - task: CmdLine@2
     inputs:
       script: |
-        chmod +x "$(Build.SourcesDirectory)/pipelines/templates/scripts/notify.sh"
+        chmod +x pipelines/templates/scripts/notify.sh
   - bash: "$(Build.SourcesDirectory)/pipelines/templates/scripts/notify.sh"
     displayName: 'Sending Notification'
