@@ -8,7 +8,7 @@ jobs:
       - checkout: self
       - script: |
           cat pipelines/chat-notify.yml
-        workingDirectory: blog-samples
+        workingDirectory: alert-test
   - job: ChatAlerts
     displayName: 'Send Google Chat Alert'
     dependsOn:
@@ -17,4 +17,4 @@ jobs:
     steps:
       - template: pipelines/templates/notify-template.yaml
         parameters:
-          webhook_url: "Enter your webhook url here"
+          webhook_url: "https://chat.googleapis.com/v1/spaces/AAAA-y5RxXY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=n678xyeVxt1ZXmw052hT_4pgJIm1BNSNE-iYDf0AgZY%3D"

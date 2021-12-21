@@ -18,7 +18,7 @@ body=$(cat << EOF
                       "text": "View",
                       "onClick": {
                         "openLink": {
-                          "url": "https://dev.azure.com/choreo-devops/$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)&view=logs"
+                          "url": "https://dev.azure.com/sre-rnd-001/$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)&view=logs"
                         }
                       }
                     }

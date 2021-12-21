@@ -4,5 +4,5 @@ parameters:
 
 steps:
   - bash: pipelines/templates/scripts/notify.sh
-    workingDirectory: blog-samples
+    workingDirectory: alert-test
     displayName: 'Sending Notification'
