@@ -3,6 +3,9 @@ parameters:
     type: string
 
 steps:
-  - bash: templates/scripts/notify.sh
-    workingDirectory: pipelines
+  - task: CmdLine@2
+    inputs:
+      script: |
+        chmod +x "$(Build.SourcesDirectory)/pipelines/templates/scripts/notify.sh"
+  - bash: "$(Build.SourcesDirectory)/pipelines/templates/scripts/notify.sh"
     displayName: 'Sending Notification'
