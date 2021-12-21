@@ -9,17 +9,17 @@ jobs:
       - script: |
           cat pipelines/chat-notify.yml
         workingDirectory: alert-test
-- job: file_share_backup_failed_alerts
-  displayName: File Share Backup Failed Alert
-  dependsOn:
-    - Testing1
-  condition: eq(dependencies.Testing1.result, 'Failed')
-  steps:
-    - template: 'templates/notify-template.yaml'
-      parameters:
-        PIPELINE_NAME: 'alert-test'
-        ENVIRONMENT: "prod"
-        PIPELINE_STATUS: "Failed"
-        GOOGLE_CHAT_SPACE: $(SRE_GOOGLE_CHAT_SPACE)
-        GOOGLE_CHAT_KEY: $(SRE_GOOGLE_CHAT_KEY)
-        GOOGLE_CHAT_TOKEN: $(SRE_GOOGLE_CHAT_TOKEN)
+  - job: SendingAlert
+    displayName: File Share Backup Failed Alert
+    dependsOn:
+      - Testing1
+    condition: eq(dependencies.Testing1.result, 'Failed')
+    steps:
+      - template: 'templates/notify-template.yaml'
+        parameters:
+          PIPELINE_NAME: 'alert-test'
+          ENVIRONMENT: "prod"
+          PIPELINE_STATUS: "Failed"
+          GOOGLE_CHAT_SPACE: $(SRE_GOOGLE_CHAT_SPACE)
+          GOOGLE_CHAT_KEY: $(SRE_GOOGLE_CHAT_KEY)
+          GOOGLE_CHAT_TOKEN: $(SRE_GOOGLE_CHAT_TOKEN)
