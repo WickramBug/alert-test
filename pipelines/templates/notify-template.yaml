@@ -3,6 +3,6 @@ parameters:
     type: string
 
 steps:
-  - bash: pipelines/templates/scripts/notify.sh
-    workingDirectory: alert-test
+  - bash: templates/scripts/notify.sh
+    workingDirectory: pipelines
     displayName: 'Sending Notification'
