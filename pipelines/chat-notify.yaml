@@ -9,12 +9,17 @@ jobs:
       - script: |
           cat pipelines/chat-notify.yml
         workingDirectory: alert-test
-  - job: ChatAlerts
-    displayName: 'Send Google Chat Alert'
-    dependsOn:
-      - Testing1
-    condition: failed()
-    steps:
-      - template: templates/notify-template.yaml
-        parameters:
-          webhook_url: "https://chat.googleapis.com/v1/spaces/AAAA-y5RxXY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=n678xyeVxt1ZXmw052hT_4pgJIm1BNSNE-iYDf0AgZY%3D"
+- job: file_share_backup_failed_alerts
+  displayName: File Share Backup Failed Alert
+  dependsOn:
+    - Testing1
+  condition: eq(dependencies.Testing1.result, 'Failed')
+  steps:
+    - template: 'templates/notify-template.yaml'
+      parameters:
+        PIPELINE_NAME: 'alert-test'
+        ENVIRONMENT: "prod"
+        PIPELINE_STATUS: "Failed"
+        GOOGLE_CHAT_SPACE: $(SRE_GOOGLE_CHAT_SPACE)
+        GOOGLE_CHAT_KEY: $(SRE_GOOGLE_CHAT_KEY)
+        GOOGLE_CHAT_TOKEN: $(SRE_GOOGLE_CHAT_TOKEN)
